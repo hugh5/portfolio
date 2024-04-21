@@ -1,0 +1,179 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rubik+One&display=swap');
+
+
+:root {
+    --accent-color: #9B70ff;
+    --background-color: #141414;
+    --secondary-background-color: #525252;
+    --primary-text-color: #fff;
+    --secondary-text-color: #ccc;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+    min-height: 100vh;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 40px;
+    background-color: var(--secondary-background-color);
+    width: 700px;
+    position: fixed;
+    border-radius: 25px;
+    top: 20px;
+    z-index: 1000;
+}
+
+nav a {
+    position: relative;
+    top: 2px;
+    font-size: 20px;
+    color: var(--secondary-text-color);
+    /* border-bottom: 3px solid transparent; */
+    text-decoration: none;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-text-color);
+    /* border-bottom: 3px solid var(--accent-color); */
+    box-shadow: 0 3px 0 var(--accent-color);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    background-color: var(--secondary-background-color);
+}
+
+footer .row {
+    width: 800px;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+#page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 120px;
+}
+
+h1 {
+    font-family: 'Rubik One', sans-serif;
+    font-weight: bold;
+    font-size: 80px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 30px;
+    align-self: flex-start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.row>* {
+    margin: 0 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home {
+    max-width: 800px;
+}
+
+/* Add your custom styles below */
+.hello {
+    display: flex;
+    flex-direction: column;
+}
+
+.hello h1:nth-child(1) {
+    padding-left: 0;
+}
+
+.hello h1:nth-child(2) {
+    padding-left: 80px;
+}
+
+.hello h1:nth-child(3) {
+    padding-left: 160px;
+}
+
+.helloimage {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+#experience {
+    max-width: 1000px;
+}
