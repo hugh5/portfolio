@@ -39,33 +39,33 @@ let counter = {
 
 const images = {
     project1: [
-        "/images/timetable1.png",
-        "/images/timetable2.png",
-        "/images/timetable3.png",
-        "/images/timetable4.png",
-        "/images/timetable5.png",
-        "/images/timetable6.png",
+        "./images/timetable1.png",
+        "./images/timetable2.png",
+        "./images/timetable3.png",
+        "./images/timetable4.png",
+        "./images/timetable5.png",
+        "./images/timetable6.png",
     ],
     project2: [
-        "/images/pathfinding1.png",
-        "/images/pathfinding2.png",
-        "/images/pathfinding3.png",
+        "./images/pathfinding1.png",
+        "./images/pathfinding2.png",
+        "./images/pathfinding3.png",
     ],
     project3: [
-        "/images/sorting1.png",
-        "/images/sorting2.png",
-        "/images/sorting3.png",
+        "./images/sorting1.png",
+        "./images/sorting2.png",
+        "./images/sorting3.png",
     ],
     project4: [
-        "/images/neuralnetwork1.jpg",
-        "/images/neuralnetwork2.jpg",
-        "/images/neuralnetwork3.jpg",
-        "/images/neuralnetwork4.jpg",
+        "./images/neuralnetwork1.jpg",
+        "./images/neuralnetwork2.jpg",
+        "./images/neuralnetwork3.jpg",
+        "./images/neuralnetwork4.jpg",
     ],
     project5: [
-        "/images/snake1.gif",
-        "/images/snake2.jpg",
-        "/images/snake3.jpg",
+        "./images/snake1.gif",
+        "./images/snake2.jpg",
+        "./images/snake3.jpg",
     ],
 };
 
