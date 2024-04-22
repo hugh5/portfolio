@@ -16,7 +16,6 @@ function loadNav() {
     });
 
     // Load the footer
-    $("footer").load("_footer.html");
 
     // On scroll, hide/show the navbar
     var lastScroll = 0;
@@ -34,6 +33,11 @@ function loadNav() {
     });
 }
 
+function loadFooter() {
+    $("footer").load("_footer.html");
+}
+
 $(function () {
     loadNav();
+    loadFooter();
 });

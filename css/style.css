@@ -15,17 +15,17 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
-    width: 100vw;
-    overflow-x: hidden;
+    overflow-wrap: anywhere;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     color: #fff;
     min-height: 100vh;
-    position: relative;
 }
 
 header {
@@ -64,8 +64,7 @@ nav a:hover, nav a.active {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    justify-self: flex-end;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -76,7 +75,7 @@ footer {
 
 footer .row {
     width: 800px;
-    justify-content: space-between;
+    padding: 0 40px;
     overflow: auto;
 }
 
@@ -90,11 +89,28 @@ footer a {
     color: var(--primary-text-color);
 }
 
-#page {
+.row {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 800px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+.row > * {
+    flex: 1;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 120px;
+    align-items: center;
 }
 
 h1 {
@@ -109,61 +125,88 @@ h1 {
 h2 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 32px;
     text-transform: uppercase;
-    margin-top: 0;
-    margin-bottom: 0;
-
+    /* margin-top: 0; */
+    margin-bottom: 10px;
+    margin-left: 40px;
+    align-self: flex-start;
 }
 
 h3 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 28px;
     margin-top: 30px;
     margin-bottom: 0;
     margin-left: 30px;
     align-self: flex-start;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    align-self: flex-start;
 }
 
-.row>* {
-    margin: 0 20px;
+h4 span {
+    font-weight: 400;
+    color: var(--secondary-text-color);
 }
 
-.column {
+h5 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: right;
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.row h5 {
+    flex: none;
+}
+
+ul {
+    align-self: flex-start;
+}
+
+#page {
+    flex: 1;
     display: flex;
-    flex-direction: column;
+    align-items: start;
     justify-content: center;
-    align-items: center;
+    padding: 0px 40px;
+    margin-bottom: 40px;
 }
 
 #home {
     max-width: 800px;
+    min-width: 100px;
 }
 
 /* Add your custom styles below */
 .hello {
+    flex: 2;
     display: flex;
     flex-direction: column;
+    word-wrap: hidden;
 }
 
-.hello h1:nth-child(1) {
-    padding-left: 0;
-}
+@media (min-width: 801px) {
+    .hello h1:nth-child(1) {
+        padding-left: 0;
+    }
 
-.hello h1:nth-child(2) {
-    padding-left: 80px;
-}
+    .hello h1:nth-child(2) {
+        padding-left: 80px;
+    }
 
-.hello h1:nth-child(3) {
-    padding-left: 160px;
+    .hello h1:nth-child(3) {
+        padding-left: 160px;
+    }
 }
 
 .helloimage {
@@ -175,5 +218,33 @@ h3 {
 }
 
 #experience {
-    max-width: 1000px;
+    width: 800px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 90px);
+    /* 6 columns with equal width */
+    grid-auto-rows: auto;
+    /* Automatically adjust row height based on content */
+    gap: 30px 60px;
+    /* Adjust the gap between grid items as needed */
+    padding: 20px;
+}
+
+@media (max-width: 800px) {
+    .grid-container {
+        align-self: flex-start;
+        grid-template-columns: repeat(2, 90px);
+        gap: 40px 20px;
+    }
+}
+
+
+.grid-container img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+    padding-bottom: 10px;
 }
