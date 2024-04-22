@@ -2,8 +2,9 @@ function loadNav() {
     // Colour the active nav item
     var path = window.location.pathname;
     var page = path.split("/").pop();
+    console.log(page.length);
     if (page == "" || page == "index.html") {
-        page = "/";
+        page = ".";
     }
     $("nav a").each(function () {
         var href = $(this).attr("href");
@@ -38,33 +39,33 @@ let counter = {
 
 const images = {
     project1: [
-        "/images/timetable/1.png",
-        "/images/timetable/2.png",
-        "/images/timetable/3.png",
-        "/images/timetable/4.png",
-        "/images/timetable/5.png",
-        "/images/timetable/6.png",
+        "/images/timetable1.png",
+        "/images/timetable2.png",
+        "/images/timetable3.png",
+        "/images/timetable4.png",
+        "/images/timetable5.png",
+        "/images/timetable6.png",
     ],
     project2: [
-        "/images/pathfinding/1.png",
-        "/images/pathfinding/2.png",
-        "/images/pathfinding/3.png",
+        "/images/pathfinding1.png",
+        "/images/pathfinding2.png",
+        "/images/pathfinding3.png",
     ],
     project3: [
-        "/images/sorting/1.png",
-        "/images/sorting/2.png",
-        "/images/sorting/3.png",
+        "/images/sorting1.png",
+        "/images/sorting2.png",
+        "/images/sorting3.png",
     ],
     project4: [
-        "/images/neuralnetwork/1.jpg",
-        "/images/neuralnetwork/2.jpg",
-        "/images/neuralnetwork/3.jpg",
-        "/images/neuralnetwork/4.jpg",
+        "/images/neuralnetwork1.jpg",
+        "/images/neuralnetwork2.jpg",
+        "/images/neuralnetwork3.jpg",
+        "/images/neuralnetwork4.jpg",
     ],
     project5: [
-        "/images/snake/1.gif",
-        "/images/snake/2.jpg",
-        "/images/snake/3.jpg",
+        "/images/snake1.gif",
+        "/images/snake2.jpg",
+        "/images/snake3.jpg",
     ],
 };
 
