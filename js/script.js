@@ -1,18 +1,15 @@
 function loadNav() {
-    // Load the navbar
-    $("header").load("_navbar.html", function () {
-        // Colour the active nav item
-        var path = window.location.pathname;
-        var page = path.split("/").pop();
-        if (page == "" || page == "index.html") {
-            page = "/";
+    // Colour the active nav item
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if (page == "" || page == "index.html") {
+        page = "/";
+    }
+    $("nav a").each(function () {
+        var href = $(this).attr("href");
+        if (page == href) {
+            $(this).addClass("active");
         }
-        $("nav a").each(function () {
-            var href = $(this).attr("href");
-            if (page == href) {
-                $(this).addClass("active");
-            }
-        });
     });
 
     // On scroll, hide/show the navbar
@@ -29,10 +26,6 @@ function loadNav() {
         }
         lastScroll = current;
     });
-}
-
-function loadFooter() {
-    $("footer").load("_footer.html");
 }
 
 let counter = {
@@ -122,6 +115,5 @@ function loadImageSliders() {
 
 $(function () {
     loadNav();
-    loadFooter();
     loadImageSliders();
 });
