@@ -38,8 +38,8 @@ let counter = {
 
 let counts = {
     project1: 6,
-    project2: 3,
-    project3: 3,
+    project2: 4,
+    project3: 4,
     project4: 4,
     project5: 3,
 };
