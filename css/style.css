@@ -180,6 +180,11 @@ ul {
     align-items: start;
     justify-content: center;
     padding: 0px 40px;
+
+    @media (max-width: 800px) {
+        padding: 0px 20px;
+    }
+
     margin-bottom: 40px;
 }
 
@@ -274,6 +279,10 @@ ul {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media (max-width: 800px) {
+            flex-direction: column;
+        }
         
         > .filler {
             flex-grow: 1;
@@ -300,15 +309,23 @@ ul {
     position: relative;
     display: flex;
     justify-content: center;
-    margin: 0 60px;
-    margin-bottom: 50px;
+    margin: 10px 60px 50px 60px;
 
     .content {
+        opacity: 0;
         border: none;
         object-fit: cover;
         max-width: 100%;
         max-height: 80vh;
         border-radius: var(--radius);
+    }
+
+    .content:first-child {
+        position: relative;
+    }
+    
+    .content:not(:first-child) {
+        position: absolute;
     }
 
     .arrow {

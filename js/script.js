@@ -2,7 +2,6 @@ function loadNav() {
     // Colour the active nav item
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    console.log(page.length);
     if (page == "" || page == "index.html") {
         page = ".";
     }
@@ -37,46 +36,32 @@ let counter = {
     project5: 0,
 };
 
-const images = {
-    project1: [
-        "./images/timetable1.png",
-        "./images/timetable2.png",
-        "./images/timetable3.png",
-        "./images/timetable4.png",
-        "./images/timetable5.png",
-        "./images/timetable6.png",
-    ],
-    project2: [
-        "./images/pathfinding1.png",
-        "./images/pathfinding2.png",
-        "./images/pathfinding3.png",
-    ],
-    project3: [
-        "./images/sorting1.png",
-        "./images/sorting2.png",
-        "./images/sorting3.png",
-    ],
-    project4: [
-        "./images/neuralnetwork1.jpg",
-        "./images/neuralnetwork2.jpg",
-        "./images/neuralnetwork3.jpg",
-        "./images/neuralnetwork4.jpg",
-    ],
-    project5: [
-        "./images/snake1.gif",
-        "./images/snake2.jpg",
-        "./images/snake3.jpg",
-    ],
+let counts = {
+    project1: 6,
+    project2: 3,
+    project3: 3,
+    project4: 4,
+    project5: 3,
 };
 
 function setContent(projectname) {
-    let selector = `#${projectname} > .content`;
-    $(selector).fadeOut(200, function () {
-        $(selector).attr("src", images[projectname][counter[projectname]]);
-        $(selector).fadeIn(200);
-    });
     let dots = "";
-    for (let i = 0; i < images[projectname].length; i++) {
+    for (let i = 0; i < counts[projectname]; i++) {
+        if (i === counter[projectname]) {
+            $(`#${projectname} > :nth-child(${i + 1})`).animate(
+                {
+                    opacity: 1,
+                },
+                500
+            );
+        } else {
+            $(`#${projectname} > :nth-child(${i + 1})`).animate(
+                {
+                    opacity: 0,
+                },
+                250
+            );
+        }
         dots += `<span class="dot ${
             i === counter[projectname] ? "active" : ""
         }"></span>`;
@@ -96,7 +81,7 @@ function loadImageSliders() {
     $(".left-arrow").on("click", function () {
         let projectname = $(this).parent().attr("id");
         if (counter[projectname] === 0) {
-            counter[projectname] = images[projectname].length - 1;
+            counter[projectname] = counts[projectname] - 1;
         } else {
             counter[projectname]--;
         }
@@ -105,7 +90,7 @@ function loadImageSliders() {
 
     $(".right-arrow").on("click", function () {
         let projectname = $(this).parent().attr("id");
-        if (counter[projectname] === images[projectname].length - 1) {
+        if (counter[projectname] === counts[projectname] - 1) {
             counter[projectname] = 0;
         } else {
             counter[projectname]++;
