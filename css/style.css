@@ -6,7 +6,7 @@
     --accent-color: #9B70ff;
     --background-color: #141414;
     --secondary-background-color: #525252;
---tertiary-background-color: #272727;
+    --tertiary-background-color: #272727;
     --primary-text-color: #fff;
     --secondary-text-color: #ccc;
 }
@@ -47,21 +47,50 @@ nav {
     border-radius: 25px;
     top: 20px;
     z-index: 1000;
-}
 
-nav a {
-    position: relative;
-    top: 2px;
-    font-size: 20px;
-    color: var(--secondary-text-color);
-    /* border-bottom: 3px solid transparent; */
-    text-decoration: none;
-}
+    @media (max-width: 800px) {
+        width: auto;
+        align-items: flex-start;
+        padding: 20px 20px;
+        top: 15px;
+        left: 15px;
+        flex-direction: column;
+    }
 
-nav a:hover, nav a.active {
-    color: var(--primary-text-color);
-    /* border-bottom: 3px solid var(--accent-color); */
-    box-shadow: 0 3px 0 var(--accent-color);
+    > .menu-image {
+        display: none;
+        cursor: pointer;
+        opacity: 0.8;
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 800px) {
+            display: block;
+        }
+    }
+
+    > .menu-item {
+        position: relative;
+        top: 2px;
+        font-size: 20px;
+        color: var(--secondary-text-color);
+        text-decoration: none;
+    
+        @media (max-width: 800px) {
+            display: none;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    }
+
+    > .menu-item:hover, > .menu-item.active {
+        color: var(--primary-text-color);
+        box-shadow: 0 3px 0 var(--accent-color);
+    }
 }
 
 footer {
@@ -96,16 +125,14 @@ footer a {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
 
-@media (max-width: 800px) {
-    .row {
+    @media (max-width: 800px) {
         flex-direction: column;
     }
-}
 
-.row > * {
-    flex: 1;
+    > * {
+        flex: 1;
+    }
 }
 
 .column {
@@ -151,7 +178,7 @@ h4 {
     align-self: flex-start;
 }
 
-h4 span {
+h4 > span {
     font-weight: 400;
     color: var(--secondary-text-color);
 }
@@ -233,16 +260,14 @@ ul {
     gap: 30px 60px;
     padding: 20px;
 
+    @media (max-width: 800px) {
+        grid-template-columns: repeat(2, 90px);
+        gap: 40px 20px;
+    }
+
     .logo {
         width: 60px;
         height: 60px;
-    }
-}
-
-@media (max-width: 800px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 90px);
-        gap: 40px 20px;
     }
 }
 
