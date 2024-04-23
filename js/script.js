@@ -28,22 +28,6 @@ function loadNav() {
     });
 }
 
-let counter = {
-    project1: 0,
-    project2: 0,
-    project3: 0,
-    project4: 0,
-    project5: 0,
-};
-
-let counts = {
-    project1: 6,
-    project2: 4,
-    project3: 4,
-    project4: 4,
-    project5: 3,
-};
-
 function setContent(projectname) {
     let dots = "";
     for (let i = 0; i < counts[projectname]; i++) {
@@ -99,7 +83,19 @@ function loadImageSliders() {
     });
 }
 
+let counter = {};
+let counts = {};
+
 $(function () {
     loadNav();
+
+    const numProjects = $('[id^="project"').not("#projects").length;
+    for (let i = 1; i <= numProjects; i++) {
+        counter[`project${i}`] = 0;
+    }
+
+    for (let i = 1; i <= numProjects; i++) {
+        counts[`project${i}`] = $(`#project${i} > .content`).length;
+    }
     loadImageSliders();
 });
