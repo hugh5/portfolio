@@ -1,3 +1,33 @@
+function setLightMode() {
+    $("body").attr("data-theme", "light");
+    $(".theme-icon").attr("src", "images/light-theme.png");
+    window.localStorage.setItem("data-theme", "light");
+}
+
+function setDarkMode() {
+    $("body").attr("data-theme", "dark");
+    $(".theme-icon").attr("src", "images/dark-theme.png");
+    window.localStorage.setItem("data-theme", "dark");
+}
+
+function toggleTheme() {
+    // Toggle between light and dark mode
+    if (isLightMode) {
+        setDarkMode();
+    } else {
+        setLightMode();
+    }
+    isLightMode = !isLightMode;
+}
+
+function loadThemeToggle() {
+    if (isLightMode) {
+        setLightMode();
+    } else {
+        setDarkMode();
+    }
+}
+
 function loadNav() {
     // Determine the current page
     var path = window.location.pathname;
@@ -18,7 +48,9 @@ function loadNav() {
     $("nav > .menu-image").on("click", function () {
         $("nav > .menu-item").slideToggle(150);
     });
+}
 
+function loadScrollBehavior() {
     // Show the nav menu when the window is resized
     $(window).resize(function () {
         if ($(window).width() > 800) {
@@ -28,7 +60,7 @@ function loadNav() {
         }
     });
 
-    // On scroll, hide/show the navbar
+    // On scroll, hide/show the navbar and theme toggle
     var lastScroll = 0;
     $(window).scroll(function (event) {
         // Current scroll position
@@ -41,15 +73,22 @@ function loadNav() {
         if (current < 20 || (current < lastScroll && current < scrollMax)) {
             // Scroll up, show the navbar
             $("nav").show(150);
+            $(".theme-button").show(150);
         } else if (current > lastScroll) {
             // Scroll down, hide the navbar
             $("nav").hide(150);
+            $(".theme-button").hide(150);
         }
         lastScroll = current;
     });
 }
 
-function setContent(projectname) {
+/**
+ * Update the image slider for the given project
+ * Shows the image at the current counter index and hides all other images
+ * @param {string} projectname - The name of the project
+ */
+function updateSlider(projectname) {
     // Interactive Image slideshow page indicators (dots below the image)
     let dots = "";
     // For each image in the project, only show the image at the current counter index
@@ -61,6 +100,7 @@ function setContent(projectname) {
             $(`#${projectname} > :nth-child(${i + 1})`).animate(
                 {
                     opacity: 1,
+                    zIndex: 1,
                 },
                 500
             );
@@ -69,6 +109,7 @@ function setContent(projectname) {
             $(`#${projectname} > :nth-child(${i + 1})`).animate(
                 {
                     opacity: 0,
+                    zIndex: 0,
                 },
                 250
             );
@@ -85,14 +126,17 @@ function setContent(projectname) {
         // Update the counter to the index of the clicked dot
         counter[projectname] = $(this).index();
         // Animate the image to show
-        setContent(projectname);
+        updateSlider(projectname);
     });
 }
 
+/**
+ * Load the image sliders for each project on the Projects page
+ */
 function loadImageSliders() {
     // For each project, set the content for the first image
     for (let projectname in counter) {
-        setContent(projectname);
+        updateSlider(projectname);
     }
 
     // Add click event listeners to the left and right arrows
@@ -107,7 +151,7 @@ function loadImageSliders() {
             counter[projectname]--;
         }
         // Set the content for the new index
-        setContent(projectname);
+        updateSlider(projectname);
     });
     // On click right arrow, increment the counter and set the content
     $(".right-arrow").on("click", function () {
@@ -120,9 +164,12 @@ function loadImageSliders() {
             counter[projectname]++;
         }
         // Set the content for the new index
-        setContent(projectname);
+        updateSlider(projectname);
     });
 }
+
+// Holds the current theme mode
+let isLightMode = window.localStorage.getItem("data-theme") === "light";
 
 // Holds the current index for each project
 let counter = {};
@@ -130,7 +177,9 @@ let counter = {};
 let counts = {};
 
 $(function () {
+    loadThemeToggle();
     loadNav();
+    loadScrollBehavior();
 
     // Initialize the index to 0 for each project
     const numProjects = $('[id^="project"').not("#projects").length;
