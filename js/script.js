@@ -1,25 +1,45 @@
+/**
+ * Sets the appearance of the page to light mode
+ */
 function setLightMode() {
+    // Set the theme attribute to light
     $("body").attr("data-theme", "light");
+    // Change the theme icon to the light theme icon
     $(".theme-icon").attr("src", "images/light-theme.png");
+    // Save the theme to local storage
     window.localStorage.setItem("data-theme", "light");
 }
 
+/**
+ * Sets the appearance of the page to dark mode
+ */
 function setDarkMode() {
+    // Set the theme attribute to dark
     $("body").attr("data-theme", "dark");
+    // Change the theme icon to the dark theme icon
     $(".theme-icon").attr("src", "images/dark-theme.png");
+    // Save the theme to local storage
     window.localStorage.setItem("data-theme", "dark");
 }
 
+/**
+ * Toggle the theme between light and dark mode
+ */
 function toggleTheme() {
-    // Toggle between light and dark mode
     if (isLightMode) {
+        // If the current theme is light, set the dark theme
         setDarkMode();
     } else {
+        // If the current theme is dark, set the light theme
         setLightMode();
     }
+    // Toggle the theme variable
     isLightMode = !isLightMode;
 }
 
+/**
+ * Load the theme toggle based on the current theme
+ */
 function loadThemeToggle() {
     if (isLightMode) {
         setLightMode();
@@ -28,6 +48,11 @@ function loadThemeToggle() {
     }
 }
 
+/**
+ * Performs the following actions when the page is loaded:
+ * 1. Highlight the current page in the nav menu
+ * 2. Show/hide the nav menu on mobile using a button
+ */
 function loadNav() {
     // Determine the current page
     var path = window.location.pathname;
@@ -46,17 +71,24 @@ function loadNav() {
 
     // Show/hide the nav menu on mobile using the menu image
     $("nav > .menu-image").on("click", function () {
-        $("nav > .menu-item").slideToggle(150);
+        $("nav > .menu-item").slideToggle(200);
     });
 }
 
+/**
+ * Perform the following actions when the page is scrolled:
+ * 1. Add event listener to make sure the navbar is shown when the window is resized
+ * 2. Add event listener to show/hide the navbar and theme toggle on scroll
+ */
 function loadScrollBehavior() {
     // Show the nav menu when the window is resized
     $(window).resize(function () {
-        if ($(window).width() > 800) {
+        if (window.innerWidth > 800) {
+            $("nav").show();
             $("nav > .menu-item").show();
         } else {
             $("nav").show();
+            $("nav > .menu-item").hide();
         }
     });
 
@@ -72,12 +104,12 @@ function loadScrollBehavior() {
         // Otherwise, if the scroll direction is down, hide the navbar
         if (current < 20 || (current < lastScroll && current < scrollMax)) {
             // Scroll up, show the navbar
-            $("nav").show(150);
-            $(".theme-button").show(150);
+            $("nav").fadeIn(150);
+            $(".theme-button").fadeIn(150);
         } else if (current > lastScroll) {
             // Scroll down, hide the navbar
-            $("nav").hide(150);
-            $(".theme-button").hide(150);
+            $("nav").fadeOut(350);
+            $(".theme-button").fadeOut(350);
         }
         lastScroll = current;
     });
@@ -131,7 +163,9 @@ function updateSlider(projectname) {
 }
 
 /**
- * Load the image sliders for each project on the Projects page
+ * Perform the following actions when the page is loaded:
+ * 1. Set the content for the first image for each project
+ * 2. Add click event listeners to the left and right arrows to change the image
  */
 function loadImageSliders() {
     // For each project, set the content for the first image
@@ -168,6 +202,30 @@ function loadImageSliders() {
     });
 }
 
+/**
+ * Add click event listeners to the cards on the Testimonials page
+ * to show the testimonial for the clicked card
+ */
+function loadTestimonials() {
+    // Add click event listeners to the cards
+    $("#testimonials .card").each(function () {
+        // On click, show the testimonial for the clicked card
+        // Hide the testimonial for the other cards
+        $(this).on("click", function () {
+            let id = $(this).attr("id");
+            // Remove the active class for the other cards
+            $("#testimonials .card").not(this).removeClass("active");
+            $("p.testimonial").not(`p#${id}`).slideUp(300);
+
+            // Add the active class for the clicked card
+            $(this).addClass("active");
+            $(`p#${id}`).slideDown(300);
+        });
+    });
+    $("#testimonials .card").first().addClass("active");
+    $("p.testimonial").first().show();
+}
+
 // Holds the current theme mode
 let isLightMode = window.localStorage.getItem("data-theme") === "light";
 
@@ -190,5 +248,8 @@ $(function () {
     for (let i = 1; i <= numProjects; i++) {
         counts[`project${i}`] = $(`#project${i} > .content`).length;
     }
+    // Projects page
     loadImageSliders();
+    // Testimonials page
+    loadTestimonials();
 });
