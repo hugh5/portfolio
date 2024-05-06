@@ -212,14 +212,14 @@ function loadTestimonials() {
         // On click, show the testimonial for the clicked card
         // Hide the testimonial for the other cards
         $(this).on("click", function () {
-            let id = $(this).attr("id");
+            let id = $(this).attr("testimonial_id");
             // Remove the active class for the other cards
             $("#testimonials .card").not(this).removeClass("active");
-            $("p.testimonial").not(`p#${id}`).slideUp(300);
+            $("p.testimonial").not(`p[testimonial_id="${id}"]`).slideUp(300);
 
             // Add the active class for the clicked card
             $(this).addClass("active");
-            $(`p#${id}`).slideDown(300);
+            $(`p[testimonial_id="${id}"]`).slideDown(300);
         });
     });
     $("#testimonials .card").first().addClass("active");
