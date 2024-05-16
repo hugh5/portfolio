@@ -57,8 +57,8 @@ function loadNav() {
     // Determine the current page
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    if (page == "" || page == "index.html") {
-        page = ".";
+    if (page == "" || page == ".") {
+        page = "index.html";
     }
 
     // Highlight the active nav item based on the current page

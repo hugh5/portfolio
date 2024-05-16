@@ -1,11 +1,12 @@
-
+/* Inter from https://fonts.google.com/specimen/Inter and Rubik One from https://fonts.google.com/specimen/Rubik */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rubik+One&display=swap');
 
-
+/* General Styles */
 :root {
     
     --background-color: #808080;
 
+    /* Light/Dark mode implementated using CSS variables and a data attribute */
     /* Dark theme */
     body[data-theme="dark"] {
         --accent-color: #9B70ff;
@@ -29,6 +30,8 @@
         --secondary-text-color: #666;
         transition: background-color 0.5s;
         
+
+        /* Invert image colors for light theme */
         .theme-icon {
             filter: invert(1);
         }
@@ -65,10 +68,11 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    min-height: 100vh;
+    min-height: 100vh; /* Full height of the viewport */
     color: var(--primary-text-color);
 }
 
+/* Navigation Menu */
 header {
     display: flex;
     justify-content: center;
@@ -81,15 +85,19 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 3px 40px;
+
+    /* Opaque background with blur effect */
     background-color: rgba(var(--secondary-background-color-rgb), 0.5);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
+
     width: 700px;
-    position: fixed;
+    position: fixed; /* Fixed position to keep the menu at the top of the page */
     border-radius: 25px;
     top: 20px;
     z-index: 1000;
 
+    /* Responsive design */
     @media (max-width: 800px) {
         width: auto;
         align-items: flex-start;
@@ -110,6 +118,7 @@ nav {
             opacity: 1;
         }
         
+        /* Show the menu image on smaller screens */
         @media (max-width: 800px) {
             display: block;
         }
@@ -132,11 +141,11 @@ nav {
 
     > .menu-item:hover, > .menu-item.active {
         color: var(--primary-text-color);
-        border-bottom: 3px solid var(--accent-color);
-        /* box-shadow: 0 3px 0 var(--accent-color); */
+        border-bottom: 3px solid var(--accent-color); /* Underline effect for the active menu item */
     }
 }
 
+/* Footer */
 footer {
     justify-self: flex-end;
     width: 100%;
@@ -177,26 +186,30 @@ footer a {
     height: 30px;
 }
 
+/* Dark/Light Theme Button */
 .theme-button {
     position: fixed;
     top: 20px;
-
-    @media (min-width: 801px) and (max-width: 960px) {
-        top: 80px;
-    }
-
     right: 20px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: none;
+
+    /* Opaque background with blur effect */
     background-color: rgba(var(--secondary-background-color-rgb), 0.5);
     backdrop-filter: blur(20px);
+
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     z-index: 1000;
+
+    /* Place below navigation menu on certain screen sizes */
+    @media (min-width: 801px) and (max-width: 960px) {
+        top: 80px;
+    }
 
     >.theme-icon {
         width: 32px;
@@ -204,13 +217,16 @@ footer a {
     }
 }
 
+/* Additional General Styling */
 .row {
+    /* Flexbox row with center alignment */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
 
+    /* Turn into column on smaller screens */
     @media (max-width: 800px) {
         flex-direction: column;
     }
@@ -221,6 +237,7 @@ footer a {
 }
 
 .column {
+    /* Flexbox column with center alignment */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -263,6 +280,7 @@ h4 {
     align-self: flex-start;
 
     > span {
+        /* Accented text */
         font-weight: 400;
         color: var(--secondary-text-color);
     }
@@ -286,6 +304,7 @@ h5 {
 }
 
 p > span {
+    /* Accented text */
     font-weight: 600;
     color: var(--accent-color);
 }
@@ -298,7 +317,8 @@ ul {
     align-self: flex-start;
 }
 
-#page {
+/* General Page */
+#page, main {
     flex: 1;
     display: flex;
     align-items: start;
@@ -311,6 +331,11 @@ ul {
     }
 }
 
+section {
+    width: 100%;
+}
+
+/* Home Page */
 #home {
     max-width: 800px;
 }
@@ -321,6 +346,7 @@ ul {
     flex-direction: column;
     word-wrap: hidden;
 
+    /* Staggered padding for each h1 element */
     @media (min-width: 801px) {
         h1:nth-child(1) {
             padding-left: 0;
@@ -344,6 +370,7 @@ ul {
     display: block;
 }
 
+/* Experience Page */
 #experience {
     max-width: 1000px;
 }
@@ -351,6 +378,7 @@ ul {
 .grid-container {
     display: grid;
     width: 100%;
+    /* Responsive grid with a minimum width of 90px and a maximum width of 1fr */
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 40px 60px;
     padding: 20px;
@@ -367,6 +395,7 @@ ul {
     padding-bottom: 10px;
 }
 
+/* Projects Page */
 #projects {
     max-width: 1000px;
 
@@ -410,7 +439,8 @@ ul {
         }
     }
 
-    >.column> :nth-child(3n+4) {
+    /* Gap between each project starting from the second project */
+    section:nth-child(n+2) {
         margin-top: 80px;
     }
 }
@@ -435,6 +465,7 @@ ul {
         border-radius: var(--radius);
     }
 
+    /* Place all content on top of each other */
     .content:first-child {
         position: relative;
     }
@@ -443,6 +474,7 @@ ul {
         position: absolute;
     }
 
+    /* Place arrows on top of the content */
     .arrow {
         width: 40px;
         height: 40px;
@@ -460,6 +492,7 @@ ul {
         }
     }
 
+    /* Position arrows */
     .left-arrow {
         left: -50px;
     }
@@ -468,6 +501,7 @@ ul {
         right: -50px;
     }
 
+    /* Place dots at the bottom of the container */
     .dots {
         display: flex;
         justify-content: center;
@@ -496,17 +530,20 @@ ul {
     }
 }
 
+/* Testimonials Page */
 #testimonials {
     width: 1000px;
 }
 
 .split-grid {
     display: grid;
+    /* Two columns with a gap of 40px */
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     width: 100%;
     padding: 20px 0;
 
+    /* One column on smaller screens */
     @media (max-width: 800px) {
         grid-template-columns: 1fr;
     }
@@ -514,6 +551,7 @@ ul {
 
 .linear-grid {
     display: grid;
+    /* One column with a gap of 40px */
     grid-template-columns: 1fr;
     gap: 40px;
     width: 100%;
@@ -579,6 +617,7 @@ ul {
     background-color: var(--tertiary-background-color);
 }
 
+/* Blog Page */
 #blog {
     max-width: 1000px;
 
