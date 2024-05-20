@@ -21,7 +21,7 @@
 
     /* Light theme */
     body[data-theme="light"] {
-        --accent-color: #3a47f0;
+        --accent-color: #ff9900;
         --background-color: #ececec;
         --secondary-background-color: #fff;
         --secondary-background-color-rgb: 255, 255, 255;
@@ -31,7 +31,7 @@
         transition: background-color 0.5s;
         
 
-        /* Invert image colors for light theme */
+        /* Invert image colours for light theme */
         .theme-icon {
             filter: invert(1);
         }
@@ -88,37 +88,37 @@ nav {
 
     /* Opaque background with blur effect */
     background-color: rgba(var(--secondary-background-color-rgb), 0.5);
-    -webkit-backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); /* Safari */
     backdrop-filter: blur(20px);
 
     width: 700px;
     position: fixed; /* Fixed position to keep the menu at the top of the page */
     border-radius: 25px;
     top: 20px;
-    z-index: 1000;
+    z-index: 1000; /* Ensure the menu is on top of other elements */
 
-    /* Responsive design */
+    /* Responsive design (when screen size <= 800) */
     @media (max-width: 800px) {
         width: auto;
         align-items: flex-start;
         padding: 20px 20px;
         top: 15px;
         left: 15px;
-        flex-direction: column;
+        flex-direction: column; /* Change to vertical layout */
     }
 
     > .menu-image {
-        display: none;
+        display: none; /* Hide the menu toggle on larger screens */
         cursor: pointer;
         opacity: 0.8;
         width: 40px;
         height: 40px;
 
         &:hover {
-            opacity: 1;
+            opacity: 1; /* Hover effect */
         }
         
-        /* Show the menu image on smaller screens */
+        /* Show the menu toggle on smaller screens */
         @media (max-width: 800px) {
             display: block;
         }
@@ -133,7 +133,7 @@ nav {
         border-bottom: 3px solid transparent;
     
         @media (max-width: 800px) {
-            display: none;
+            display: none; /* Hide menu items on smaller screens until the menu toggle is clicked */
             font-size: 24px;
             margin-bottom: 20px;
         }
@@ -177,7 +177,7 @@ footer a {
     padding: 5px 10px;
 
     &:hover {
-        background-color: var(--tertiary-background-color);
+        background-color: var(--tertiary-background-color); /* Change background colour on hover */
     }
 }
 
@@ -188,7 +188,7 @@ footer a {
 
 /* Dark/Light Theme Button */
 .theme-button {
-    position: fixed;
+    position: fixed; /* Fixed position to keep the button at the top right of the page */
     top: 20px;
     right: 20px;
     width: 50px;
@@ -198,15 +198,16 @@ footer a {
 
     /* Opaque background with blur effect */
     background-color: rgba(var(--secondary-background-color-rgb), 0.5);
+    -webkit-backdrop-filter: blur(20px); /* Safari */
     backdrop-filter: blur(20px);
 
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000; /* Ensure the button is on top of other elements */
 
-    /* Place below navigation menu on certain screen sizes */
+    /* Place below navigation menu on certain screen sizes to prevent overlap */
     @media (min-width: 801px) and (max-width: 960px) {
         top: 80px;
     }
@@ -226,11 +227,12 @@ footer a {
     align-items: center;
     width: 100%;
 
-    /* Turn into column on smaller screens */
+    /* Turn into column on smaller screens for vertical layout */
     @media (max-width: 800px) {
         flex-direction: column;
     }
 
+    /* Equal width for all children */
     > * {
         flex: 1;
     }
@@ -280,7 +282,7 @@ h4 {
     align-self: flex-start;
 
     > span {
-        /* Accented text */
+        /* Accented text within h4 */
         font-weight: 400;
         color: var(--secondary-text-color);
     }
@@ -296,7 +298,9 @@ h5 {
     margin: 0;
 
     @media (max-width: 800px) {
+        /* Align to the left on smaller screens */
         align-self: flex-start;
+        /* If the h5 is a sibling of an h2 element, add margin to the left */
         h2+& {
             margin-left: 40px;
         }
@@ -310,6 +314,7 @@ p > span {
 }
 
 .row h5 {
+    /* Shrink h5 with a row */
     flex: none;
 }
 
@@ -326,6 +331,7 @@ ul {
     padding: 0px 40px;
     margin-bottom: 40px;
 
+    /* Responsive padding */
     @media (max-width: 800px) {
         padding: 0px 20px;
     }
@@ -346,7 +352,7 @@ section {
     flex-direction: column;
     word-wrap: hidden;
 
-    /* Staggered padding for each h1 element */
+    /* Staggered padding style for each h1 element on larger screens */
     @media (min-width: 801px) {
         h1:nth-child(1) {
             padding-left: 0;
@@ -366,7 +372,7 @@ section {
     border-radius: 50%;
     width: 200px;
     height: 200px;
-    object-fit: cover;
+    object-fit: cover; /* Cover the entire container */
     display: block;
 }
 
@@ -379,6 +385,7 @@ section {
     display: grid;
     width: 100%;
     /* Responsive grid with a minimum width of 90px and a maximum width of 1fr */
+    /* Automatically fill the grid with as many columns as possible */
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 40px 60px;
     padding: 20px;
@@ -416,7 +423,7 @@ section {
     }
 
     a:hover {
-        background-color: var(--tertiary-background-color);
+        background-color: var(--tertiary-background-color); /* Change background colour on hover */
     }
 
     .tech-stack {
@@ -425,14 +432,15 @@ section {
         align-items: center;
 
         @media (max-width: 800px) {
-            flex-direction: column;
+            flex-direction: column; /* Change to vertical layout on smaller screens */
         }
         
         > .filler {
-            flex-grow: 1;
+            flex-grow: 1; /* Fill the remaining space */
         }
 
         > *:not(.filler) {
+            /* Add margin between each element that is not a filler */
             padding: 10px 20px;
             margin-left: 10px;
             margin-right: 10px;
@@ -449,7 +457,7 @@ section {
     flex: 0.3;
 }
 
-.container {
+.image-slider {
     --radius: 25px;
     position: relative;
     display: flex;
@@ -465,7 +473,7 @@ section {
         border-radius: var(--radius);
     }
 
-    /* Place all content on top of each other */
+    /* Place all images on top of each other */
     .content:first-child {
         position: relative;
     }
@@ -474,7 +482,7 @@ section {
         position: absolute;
     }
 
-    /* Place arrows on top of the content */
+    /* Place arrows on top of the image */
     .arrow {
         width: 40px;
         height: 40px;
@@ -501,7 +509,7 @@ section {
         right: -50px;
     }
 
-    /* Place dots at the bottom of the container */
+    /* Place dots at the bottom of the image slider */
     .dots {
         display: flex;
         justify-content: center;
@@ -569,14 +577,15 @@ section {
     border: 2px solid transparent;
 
     @media (max-width: 800px) {
-        flex-direction: column;
+        flex-direction: column; /* Change to vertical layout on smaller screens */
     }
 
     &:hover {
-        background-color: var(--tertiary-background-color);
+        background-color: var(--tertiary-background-color); /* Change background colour on hover */
     }
 
     &.active {
+        /* Highlight the selected card with a border */
         background-color: var(--tertiary-background-color);
         border: 2px solid var(--accent-color);
     }
@@ -591,6 +600,7 @@ section {
     display: block;
 
     @media (max-width: 800px) {
+        /* Reduce the size of the image on smaller screens */
         width: 60px;
         height: 60px;
     }
@@ -605,6 +615,7 @@ section {
     line-height: 2;
 
     @media (max-width: 800px) {
+        /* Reduce the margin on smaller screens */
         margin-left: 0;
     }
 }
@@ -621,10 +632,10 @@ section {
 #blog {
     max-width: 1000px;
 
+    /* Gap between each article starting from the second article */
     article:nth-of-type(n+2) {
         margin-top: 80px;
     }
-
 
     .profile-image {
         flex: none;
@@ -636,7 +647,7 @@ section {
 
 
         @media (min-width: 801px) {
-            margin-left: 40px;
+            margin-left: 40px; /* Add margin to the left on larger screens */
         }
         
     }
@@ -657,7 +668,7 @@ section {
     align-items: start;
 
     @media (min-width: 801px) {
-        margin-left: 40px;
+        margin-left: 40px; /* Add margin to the left on larger screens */
     }
 
     > p {
