@@ -4,11 +4,9 @@
 /* General Styles */
 :root {
     
-    --background-color: #808080;
-
     /* Light/Dark mode implementated using CSS variables and a data attribute */
     /* Dark theme */
-    body[data-theme="dark"] {
+    &[data-theme="dark"] {
         --accent-color: #9B70ff;
         --background-color: #141414;
         --secondary-background-color: #525252;
@@ -16,11 +14,10 @@
         --tertiary-background-color: #272727;
         --primary-text-color: #fff;
         --secondary-text-color: #ccc;
-        transition: background-color 0.5s;
     }
 
     /* Light theme */
-    body[data-theme="light"] {
+    &[data-theme="light"] {
         --accent-color: #ff9900;
         --background-color: #ececec;
         --secondary-background-color: #fff;
@@ -28,8 +25,6 @@
         --tertiary-background-color: #f5f5f5;
         --primary-text-color: #000;
         --secondary-text-color: #666;
-        transition: background-color 0.5s;
-        
 
         /* Invert image colours for light theme */
         .theme-icon {
@@ -60,6 +55,7 @@ html, body {
     padding: 0;
     background-color: var(--background-color);
     overflow-wrap: anywhere;
+    transition: background-color 0.5s, color 0.5s; /* Smooth transition effect */
 }
 
 body {
@@ -370,6 +366,7 @@ section {
 
 .helloimage {
     border-radius: 50%;
+    border: 2px solid var(--accent-color);
     width: 200px;
     height: 200px;
     object-fit: cover; /* Cover the entire container */

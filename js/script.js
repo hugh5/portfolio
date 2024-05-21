@@ -3,7 +3,7 @@
  */
 function setLightMode() {
     // Set the theme attribute to light
-    $("body").attr("data-theme", "light");
+    $(":root").attr("data-theme", "light");
     // Change the theme icon to the light theme icon
     $(".theme-icon").attr("src", "images/light-theme.png");
     // Save the theme to local storage
@@ -15,7 +15,7 @@ function setLightMode() {
  */
 function setDarkMode() {
     // Set the theme attribute to dark
-    $("body").attr("data-theme", "dark");
+    $(":root").attr("data-theme", "dark");
     // Change the theme icon to the dark theme icon
     $(".theme-icon").attr("src", "images/dark-theme.png");
     // Save the theme to local storage
@@ -234,6 +234,7 @@ let counter = {};
 // Holds the maximum index for each project
 let counts = {};
 
+// Runs once the DOM is ready
 $(function () {
     loadThemeToggle();
     loadNav();
