@@ -87,7 +87,7 @@ function loadNav() {
     // Highlight the active nav item based on the current page
     $("nav > .menu-item").each(function () {
         const href = $(this).attr("href");
-        if ("/" + page === href) {
+        if ("./" + page === href) {
             $(this).addClass("active");
         }
     });
