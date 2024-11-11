@@ -5,7 +5,7 @@ function setLightMode() {
     // Set the theme attribute to light
     $(":root").attr("data-theme", "light");
     // Change the theme icon to the light theme icon
-    $(".theme-icon").attr("src", "images/light-theme.png");
+    // $(".theme-icon").attr("src", "images/light-theme.png");
     // Save the theme to local storage
     window.localStorage.setItem("data-theme", "light");
 }
@@ -17,7 +17,7 @@ function setDarkMode() {
     // Set the theme attribute to dark
     $(":root").attr("data-theme", "dark");
     // Change the theme icon to the dark theme icon
-    $(".theme-icon").attr("src", "images/dark-theme.png");
+    // $(".theme-icon").attr("src", "images/dark-theme.png");
     // Save the theme to local storage
     window.localStorage.setItem("data-theme", "dark");
 }
@@ -48,6 +48,30 @@ function loadThemeToggle() {
     }
 }
 
+function preloadTheme() {
+    let dataTheme = window.localStorage.getItem("data-theme");
+    if (dataTheme === null) {
+        if (window.matchMedia) {
+            // Check if the dark-mode Media-Query matches
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                dataTheme = "dark";
+            } else {
+                dataTheme = "light";
+            }
+        } else {
+            dataTheme = "light";
+        }
+        window.localStorage.setItem("data-theme", dataTheme);
+    }
+    if (dataTheme === "dark") {
+        // Set the theme attribute to dark
+        $(":root").attr("data-theme", "dark");
+    } else {
+        // Set the theme attribute to light
+        $(":root").attr("data-theme", "light");
+    }
+}
+
 /**
  * Performs the following actions when the page is loaded:
  * 1. Highlight the current page in the nav menu
@@ -55,16 +79,15 @@ function loadThemeToggle() {
  */
 function loadNav() {
     // Determine the current page
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-    if (page == "" || page == ".") {
-        page = "index.html";
-    }
+    let path = window.location.pathname;
+    path = path.replace(".html", "");
+    let page = path.split("/").pop();
+    page = page.replace("index", "");
 
     // Highlight the active nav item based on the current page
     $("nav > .menu-item").each(function () {
-        var href = $(this).attr("href");
-        if (page == href) {
+        const href = $(this).attr("href");
+        if ("/" + page === href) {
             $(this).addClass("active");
         }
     });
@@ -93,12 +116,12 @@ function loadScrollBehavior() {
     });
 
     // On scroll, hide/show the navbar and theme toggle
-    var lastScroll = 0;
-    $(window).scroll(function (event) {
+    let lastScroll = 0;
+    $(window).scroll(function (_) {
         // Current scroll position
-        var current = $(this).scrollTop();
+        const current = $(this).scrollTop();
         // Maximum scroll position
-        var scrollMax = window.document.body.scrollHeight - window.innerHeight;
+        const scrollMax = window.document.body.scrollHeight - window.innerHeight;
         // If the current scroll position is near the top or
         // the scroll direction is up and not past the bottom, show the navbar
         // Otherwise, if the scroll direction is down, hide the navbar
@@ -129,22 +152,16 @@ function updateSlider(projectname) {
         // Hide all other images (opacity 0)
         if (i === counter[projectname]) {
             // Grab the image at the current counter index and animate it to show
-            $(`#${projectname} > :nth-child(${i + 1})`).animate(
-                {
-                    opacity: 1,
-                    zIndex: 1,
-                },
-                500
-            );
+            $(`#${projectname} > :nth-child(${i + 1})`).css({
+                zIndex: 1,
+                opacity: 1,
+            });
         } else {
             // Hide all other images
-            $(`#${projectname} > :nth-child(${i + 1})`).animate(
-                {
-                    opacity: 0,
-                    zIndex: 0,
-                },
-                250
-            );
+            $(`#${projectname} > :nth-child(${i + 1})`).css({
+                zIndex: 0,
+                opacity: 0,
+            });
         }
         // Generate the html for the dots below the image
         dots += `<span class="dot ${
@@ -208,7 +225,8 @@ function loadImageSliders() {
  */
 function loadTestimonials() {
     // Add click event listeners to the cards
-    $("#testimonials .card").each(function () {
+    const cards = $("#testimonials .card");
+    cards.each(function () {
         // On click, show the testimonial for the clicked card
         // Hide the testimonial for the other cards
         $(this).on("click", function () {
@@ -222,7 +240,7 @@ function loadTestimonials() {
             $(`p[testimonial_id="${id}"]`).slideDown(300);
         });
     });
-    $("#testimonials .card").first().addClass("active");
+    cards.first().addClass("active");
     $("p.testimonial").first().show();
 }
 
@@ -234,14 +252,15 @@ let counter = {};
 // Holds the maximum index for each project
 let counts = {};
 
+preloadTheme();
 // Runs once the DOM is ready
 $(function () {
-    loadThemeToggle();
     loadNav();
+    loadThemeToggle();
     loadScrollBehavior();
 
     // Initialize the index to 0 for each project
-    const numProjects = $('[id^="project"').not("#projects").length;
+    const numProjects = $('[id^="project"]').not("#projects").length;
     for (let i = 1; i <= numProjects; i++) {
         counter[`project${i}`] = 0;
     }

@@ -7,33 +7,48 @@
     /* Light/Dark mode implementated using CSS variables and a data attribute */
     /* Dark theme */
     &[data-theme="dark"] {
-        --accent-color: #9B70ff;
+        --accent-color: #33CA7F;
         --background-color: #141414;
         --secondary-background-color: #525252;
         --secondary-background-color-rgb: 82, 82, 82;
         --tertiary-background-color: #272727;
         --primary-text-color: #fff;
         --secondary-text-color: #ccc;
+
+        .theme-icon {
+            content: url("../images/dark-theme.png");
+            filter: brightness(0) saturate(90%) invert(64%) sepia(58%)
+                    saturate(490%) hue-rotate(98deg) brightness(92%) contrast(91%);
+        }
+
+        .logo {
+            filter: brightness(0) saturate(90%) invert(64%) sepia(58%)
+                    saturate(490%) hue-rotate(98deg) brightness(92%) contrast(91%);
+        }
+
     }
 
     /* Light theme */
     &[data-theme="light"] {
-        --accent-color: #ff9900;
-        --background-color: #ececec;
+        --accent-color: #9B70ff;
+        --background-color: #E0E0E0;
         --secondary-background-color: #fff;
         --secondary-background-color-rgb: 255, 255, 255;
-        --tertiary-background-color: #f5f5f5;
+        --tertiary-background-color: #EBEBEB;
         --primary-text-color: #000;
         --secondary-text-color: #666;
 
         /* Invert image colours for light theme */
         .theme-icon {
-            filter: invert(1);
+            content: url("../images/light-theme.png");
+            filter: brightness(0) invert(55%) sepia(27%)
+                    saturate(7075%) hue-rotate(227deg) brightness(99%) contrast(104%);
         }
 
         .logo {
-            filter: invert(1);
-            }
+            filter: brightness(0) invert(55%) sepia(27%)
+                    saturate(7075%) hue-rotate(227deg) brightness(99%) contrast(104%);
+        }
         
         .social-icon {
             filter: invert(1);
@@ -55,7 +70,7 @@ html, body {
     padding: 0;
     background-color: var(--background-color);
     overflow-wrap: anywhere;
-    transition: background-color 0.5s, color 0.5s; /* Smooth transition effect */
+    transition: all 1s; /* Smooth transition effect */
 }
 
 body {
@@ -87,7 +102,7 @@ nav {
     -webkit-backdrop-filter: blur(20px); /* Safari */
     backdrop-filter: blur(20px);
 
-    width: 700px;
+    width: 600px;
     position: fixed; /* Fixed position to keep the menu at the top of the page */
     border-radius: 25px;
     top: 20px;
@@ -148,7 +163,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0px;
+    padding: 10px 0;
     background-color: var(--secondary-background-color);
 }
 
@@ -255,6 +270,7 @@ h2 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     font-size: 32px;
+    color: var(--primary-text-color);
     text-transform: uppercase;
     margin-bottom: 10px;
     margin-left: 40px;
@@ -324,12 +340,12 @@ ul {
     display: flex;
     align-items: start;
     justify-content: center;
-    padding: 0px 40px;
+    padding: 0 40px;
     margin-bottom: 40px;
 
     /* Responsive padding */
     @media (max-width: 800px) {
-        padding: 0px 20px;
+        padding: 0 20px;
     }
 }
 
@@ -346,7 +362,7 @@ section {
     flex: 2;
     display: flex;
     flex-direction: column;
-    word-wrap: hidden;
+    color: var(--accent-color);
 
     /* Staggered padding style for each h1 element on larger screens */
     @media (min-width: 801px) {
@@ -366,7 +382,7 @@ section {
 
 .helloimage {
     border-radius: 50%;
-    border: 2px solid var(--accent-color);
+    border: 4px solid var(--accent-color);
     width: 200px;
     height: 200px;
     object-fit: cover; /* Cover the entire container */
@@ -374,29 +390,35 @@ section {
 }
 
 /* Experience Page */
-#experience {
+#resume {
     max-width: 1000px;
-}
-
-.grid-container {
-    display: grid;
     width: 100%;
-    /* Responsive grid with a minimum width of 90px and a maximum width of 1fr */
-    /* Automatically fill the grid with as many columns as possible */
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 40px 60px;
-    padding: 20px;
 
     .logo {
+        flex: none;
         width: 60px;
         height: 60px;
     }
 }
 
-.logo {
-    object-fit: cover;
-    display: block;
-    padding-bottom: 10px;
+.grid-container {
+    display: grid;
+    box-sizing: border-box;
+    width: 100%;
+    /* Responsive grid with a minimum width of 90px and a maximum width of 1fr */
+    /* Automatically fill the grid with as many columns as possible */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 40px 60px;
+    padding: 20px;
+
+    & p {
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+.wider {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
 /* Projects Page */
@@ -404,22 +426,23 @@ section {
     max-width: 1000px;
 
     .logo {
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
+        padding-bottom: 10px;
     }
 
-    h2 {
+    & h2 {
         margin-top: 10px;
         margin-bottom: 10px;
     }
 
-    a {
+    & a {
         text-decoration: none;
         color: var(--primary-text-color);
         border-radius: 8px;
     }
 
-    a:hover {
+    & a:hover {
         background-color: var(--tertiary-background-color); /* Change background colour on hover */
     }
 
@@ -445,7 +468,7 @@ section {
     }
 
     /* Gap between each project starting from the second project */
-    section:nth-child(n+2) {
+    & section:nth-child(n+2) {
         margin-top: 80px;
     }
 }
@@ -491,8 +514,8 @@ section {
         &:hover {
             background-color: var(--accent-color);
         }
-        
-        img {
+
+        & img {
             width: 100%;
         }
     }
@@ -517,15 +540,14 @@ section {
         padding: 20px 0;
 
         .dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background-color: var(--secondary-background-color);
-            transition: all 200ms ease-in-out;
+            background-color: var(--primary-text-color);
         }
         
         .active {
-            background-color: var(--primary-text-color);
+            background-color: var(--accent-color);
         }
 
         .dot:hover {
@@ -630,7 +652,7 @@ section {
     max-width: 1000px;
 
     /* Gap between each article starting from the second article */
-    article:nth-of-type(n+2) {
+    & article:nth-of-type(n+2) {
         margin-top: 80px;
     }
 
