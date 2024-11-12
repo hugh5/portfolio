@@ -255,6 +255,10 @@ footer a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .left {
+        align-self: flex-start;
+    }
 }
 
 h1 {
@@ -319,7 +323,7 @@ h5 {
     }
 }
 
-p > span {
+p > span, li > span {
     /* Accented text */
     font-weight: 600;
     color: var(--accent-color);
