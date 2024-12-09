@@ -89,6 +89,10 @@ header {
     justify-content: center;
     align-items: center;
     margin-bottom: 80px;
+
+    @media (max-width: 800px) {
+        margin-bottom: 100px;
+    }
 }
 
 nav {
@@ -99,11 +103,11 @@ nav {
 
     /* Opaque background with blur effect */
     background-color: rgba(var(--secondary-background-color-rgb), 0.5);
-    -webkit-backdrop-filter: blur(20px); /* Safari */
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(5px); /* Safari */
+    backdrop-filter: blur(5px);
 
-    width: 600px;
-    position: fixed; /* Fixed position to keep the menu at the top of the page */
+    width: 500px;
+    position: fixed; /* Fixed position to keep menu at the top of the page */
     border-radius: 25px;
     top: 20px;
     z-index: 1000; /* Ensure the menu is on top of other elements */
@@ -219,9 +223,9 @@ footer a {
     z-index: 1000; /* Ensure the button is on top of other elements */
 
     /* Place below navigation menu on certain screen sizes to prevent overlap */
-    @media (min-width: 801px) and (max-width: 960px) {
+    /* @media (min-width: 801px) and (max-width: 860px) {
         top: 80px;
-    }
+    } */
 
     >.theme-icon {
         width: 32px;
@@ -393,7 +397,7 @@ section {
     display: block;
 }
 
-/* Experience Page */
+/* Resume Page */
 #resume {
     max-width: 1000px;
     width: 100%;
