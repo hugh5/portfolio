@@ -30,7 +30,7 @@
 
     /* Light theme */
     &[data-theme="light"] {
-        --accent-color: #9B70ff;
+        --accent-color: #4C80F3;
         --background-color: #E0E0E0;
         --secondary-background-color: #fff;
         --secondary-background-color-rgb: 255, 255, 255;
@@ -41,13 +41,13 @@
         /* Invert image colours for light theme */
         .theme-icon {
             content: url("../images/light-theme.png");
-            filter: brightness(0) invert(55%) sepia(27%)
-                    saturate(7075%) hue-rotate(227deg) brightness(99%) contrast(104%);
+            filter: brightness(0) saturate(100%) invert(43%) sepia(77%) saturate(584%)
+                    hue-rotate(186deg) brightness(97%) contrast(96%);
         }
 
         .logo {
-            filter: brightness(0) invert(55%) sepia(27%)
-                    saturate(7075%) hue-rotate(227deg) brightness(99%) contrast(104%);
+            filter: brightness(0) saturate(100%) invert(43%) sepia(77%) saturate(584%)
+                    hue-rotate(186deg) brightness(97%) contrast(96%);
         }
         
         .social-icon {
@@ -523,6 +523,10 @@ section {
             background-color: var(--accent-color);
         }
 
+        &:active {
+            opacity: 0.5;
+        }
+
         & img {
             width: 100%;
         }
@@ -561,6 +565,10 @@ section {
         .dot:hover {
             cursor: pointer;
             background-color: var(--accent-color);
+        }
+
+        .dot:active {
+            opacity: 0.5;
         }
     }
 }
